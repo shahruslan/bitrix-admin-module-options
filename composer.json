@@ -1,0 +1,21 @@
+{
+  "name": "shahruslan/bitrix-admin-module-options",
+  "description": "Пакет для управления настройками модуля в административной части Bitrix",
+  "keywords": ["bitrix"],
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "shahruslan",
+      "email": "shahruslan.m@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.4|^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Shahruslan\\BitrixAdmin\\": "src/"
+    }
+  }
+}
