@@ -63,15 +63,11 @@ class ModuleOptions
             return;
         }
 
-        $redirect = '';
+        $redirect = $this->getBaseUrl();
 
         if ($this->request->getPost('RestoreDefaults')) {
             /** @noinspection PhpUnhandledExceptionInspection */
             Option::delete($this->moduleId);
-
-            $redirect = $this->getBaseUrl()
-                . "&back_url_settings=" . urlencode($_REQUEST["back_url_settings"])
-                . "&" . $this->tabControl->ActiveTabParam();
         }
 
         if ($this->request->getPost('Update') || $this->request->getPost('Apply')) {
@@ -83,10 +79,6 @@ class ModuleOptions
                     } catch (ArgumentOutOfRangeException $e) {}
                 }
             }
-
-            if (strlen($this->request["back_url_settings"]) > 0) {
-                $redirect = $this->request["back_url_settings"];
-            }
         }
 
         if (strlen($redirect) > 0) {
@@ -96,7 +88,12 @@ class ModuleOptions
 
     private function getBaseUrl(): string
     {
-        $params = sprintf("mid=%s&lang=%s", urlencode($this->moduleId), urlencode(LANGUAGE_ID));
+        $params = sprintf(
+            "mid=%s&lang=%s&%s",
+            urlencode($this->moduleId),
+            urlencode(LANGUAGE_ID),
+            $this->tabControl->ActiveTabParam(),
+        );
         return $this->application->GetCurPageParam($params, ["mid", "lang"]);
     }
 }
