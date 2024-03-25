@@ -30,12 +30,12 @@ $restoreMess = AddSlashes(Loc::getMessage("MAIN_HINT_RESTORE_DEFAULTS_WARNING"))
         <?php foreach ($tab->getOptions() as $option) : ?>
             <?php $value = Option::get($module_id, $option->getName())?>
             <tr>
-                <td valign="top" width="30%">
+                <td width="30%">
                     <label for="<?= htmlspecialchars($option->getName()) ?>">
-                        <?= htmlspecialchars($option->getLabel()) ?>
+                        <?= htmlspecialchars($option->getLabel()) ?>:
                     </label>
                 </td>
-                <td valign="top" width="70%">
+                <td width="70%">
                     <?= $this->renderOption($option) ?>
                 </td>
             </tr>
